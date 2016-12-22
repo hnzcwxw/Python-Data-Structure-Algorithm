@@ -17,4 +17,3 @@ nums = range(0, 23456, 2)
 #nums = [2, 3, 4, 5, 6]
 so1 = Solution()
 print so1.twoSum(nums, 16000)
-assert 1 not in [1, 2] , "123"
