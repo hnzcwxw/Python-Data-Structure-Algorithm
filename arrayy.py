@@ -52,3 +52,51 @@ class _ArrayIterator:
             return entry
         else:
             return StopIteration
+
+class Array2D:
+    # create a 2-D array of size numRows x numCols
+    def __init__(self, numRows, numCols):
+        # Create a 1-D array to store an array reference for each row
+        self._theRows = Array(numRows)
+
+        # Create a 1-D array for each row of the 2-D array
+        for i in range(numRows):
+            self._theRows[i] = Array(numCols)
+
+    # Return the numbers of rows in the 2-D array
+    def numRows(self):
+        return len(self._theRows)
+
+    # Return the numbers of cols in the 2-D array
+    def numCols(self):
+        return len(self._theRows[0])
+
+    # Clear the array by setting every element to the given value
+    def clear(self, value):
+        for row in range(self.numRows()):
+            self._theRows[row].clear(value)
+    # Gets the contents of the element at position [i, j]
+    def __getitem__(self, item):
+        if type(item) is int:
+            assert item < self.numRows(), "Invalid number of array subscripts"
+            return self._theRows[item]
+        else:
+            assert len(item) == 2, "Invalid number of array subscripts"
+            row = item[0]
+            col = item[1]
+            assert row >= 0 and row < self.numRows()   \
+               and col >= 0 and col < self.numCols(),  \
+                   "Array subscript out of range"
+            the1dArray = self._theRows[row]
+            return the1dArray[col]
+
+    # Set the contents of the element at position [i, j] to value
+    def __setitem__(self, key, value):
+        assert len(key) == 2, "Invalid number of array subscripts"
+        row = key[0]
+        col = key[1]
+        assert row >= 0 and row < self.numRows()   \
+           and col >= 0 and col < self.numCols(),  \
+               "Array subscript out of range"
+        the1dArray = self._theRows[row]
+        the1dArray[col] = value
