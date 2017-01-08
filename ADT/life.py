@@ -57,6 +57,18 @@ class LifeGrid:
             numLife -= 1
         return numLife
 
+    # Does the grid is a alive
+    def isLive(self):
+        numLife = 0
+        for i in range(self.numRows()):
+            for j in range(self.numCols()):
+                if self.numLiveNeighbors(i, j):
+                    numLife += 1
+        if numLife > 0:
+            return True
+        else:
+            return False
+
     # Draw the screen of the game grid
     def draw(self):
         for r in range(self.numRows()):

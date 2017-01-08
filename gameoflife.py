@@ -23,6 +23,9 @@ def main():
         evolve(grid)
         print "%d generation" % (i + 1)
         grid.draw()
+        if not grid.isLive():
+            print "You are dead!"
+            break
 
 # Generates the next generation of organisms
 def evolve(grid):
